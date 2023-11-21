@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      background-color: #d7ccc8; /* Biscuit color */
+    }
+
+    h2 {
+      color: #795548; /* Brown color */
+    }
+
+    table {
+      font-family: Arial, sans-serif;
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    th, td {
+      border: 1px solid #8d6e63; /* Brownish Gray color */
+      text-align: center;
+      padding: 12px;
+    }
+
+    th {
+      background-color: #795548; /* Brown color */
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #efebe9; /* Antique White color */
+    }
+
+    .container {
+      border-radius: 5px;
+      background-color: #d7ccc8; /* Biscuit color */
+      padding: 20px;
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      color: #795548; /* Brown color */
+      font-weight: bold;
+      text-align: left;
+    }
+
+    input[type=text] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #a1887f; /* Dusty Gray color */
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+
+    input[type=submit] {
+      background-color: #795548; /* Brown color */
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+      background-color: #5d4037; /* Dark Brown color */
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Library Information</h2>
+
+  <table>
+    <tr>
+      <th>Book Name</th>
+      <th>Writer Name</th>
+      <th>Serial Number</th>
+      <th>Acquisition Date</th>
+      <th>Return Date</th>
+    </tr>
+    {% for i in lib %}
+    <tr>
+      <td>{{i.Book_Name}}</td>
+      <td>{{i.Writer_Name}}</td>
+      <td>{{i.Serial_No}}</td>
+      <td>{{i.Acquisition_Date}}</td>
+      <td>{{i.Return_Date}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="container">
+    <form action="{%url 'libraryAdd'%}" method='post'>
+
+        {% csrf_token %}
+    
+    <form>
+      <label for="bname">Book Name</label>
+      <input type="text" id="fname" name="lname" placeholder="Book name..">
+
+      <label for="wname">Writer Name</label>
+      <input type="text" id="lastname" name="lname" placeholder="Writer name..">
+
+      <label for="Mobile">Serial Number</label>
+      <input type="text" id="lname" name="mobile" placeholder="Serial number..">
+
+      <label for="email">Acquisition Date</label>
+      <input type="text" id="email" name="email" placeholder="Acquisition Date..">
+
+      <label for="age">Return Date</label>
+      <input type="text" id="age" name="age" placeholder="Return Date..">
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+</body>
+</html>

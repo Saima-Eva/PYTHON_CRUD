@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+      background-color: #f2f2f2;
+    }
+
+    h2 {
+      color: #04AA6D;
+    }
+
+    table {
+      font-family: Arial, sans-serif;
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: center;
+      padding: 12px;
+    }
+
+    th {
+      background-color: #04AA6D;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .container {
+      border-radius: 5px;
+      background-color: #ffffff;
+      padding: 20px;
+      width: 80%;
+      margin: 20px auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      color: #04AA6D;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    input[type=text] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      resize: vertical;
+    }
+
+    input[type=submit] {
+      background-color: #04AA6D;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Students Information</h2>
+
+  <table>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Mobile Number</th>
+      <th>Email</th>
+      <th>Age</th>
+    </tr>
+    {% for i in std %}
+    <tr>
+      <td>{{i.First_Name}}</td>
+      <td>{{i.Last_Name}}</td>
+      <td>{{i.Mobile}}</td>
+      <td>{{i.Email}}</td>
+      <td>{{i.Age}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="container">
+    <form action="{%url "studentAdd"%}" method='post'>
+
+        {% csrf_token %}
+    
+    <form>
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+      <label for="lastname">Last Name</label>
+      <input type="text" id="lastname" name="lastname" placeholder="Your last name..">
+
+      <label for="Mobile">Mobile Number</label>
+      <input type="text" id="lname" name="mobile" placeholder="Your mobile number..">
+
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" placeholder="Your email..">
+
+      <label for="age">Age</label>
+      <input type="text" id="age" name="age" placeholder="Your age..">
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+
+</body>
+</html>
