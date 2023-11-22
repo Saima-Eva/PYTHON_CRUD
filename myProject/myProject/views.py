@@ -37,6 +37,14 @@ def employeePage(request):
 
     return render(request,"employee.html",context)
 
+def loginPage(request):
+
+    return render(request,"login.html")
+
+def signupPage(request):
+
+    return render(request,"signup.html")
+
 
 def authorityPage(request):
 

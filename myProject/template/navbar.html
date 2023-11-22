@@ -1,0 +1,19 @@
+
+{% block content%}
+<header>
+    <h1>Homepage</h1>
+</header>
+
+<nav>
+    <a href="{% url 'homePageUrl' %}">Home</a>
+    <a href="{% url 'studentPageUrl' %}">Student</a>
+    <a href="{% url 'teacherPageUrl' %}">Teacher</a>
+    <a href="{% url 'employeePageUrl' %}">Employee</a>
+    <a href="{% url 'authorityPageUrl' %}">Authority</a>
+    <a href="{% url 'libraryPageUrl' %}">Library</a>
+    <a href="{% url 'loginPage' %}">Signout</a>
+</nav>
+
+
+
+{% endblock %}

@@ -5,12 +5,14 @@ from.views import *
   
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', homePage,name="homePageUrl"),
+    path('homePage', homePage,name="homePageUrl"),
     path('studentPage', studentPage,name="studentPageUrl"),
     path('teacherPage', teacherPage,name="teacherPageUrl"),
     path('employeePage',employeePage,name="employeePageUrl"),
     path('authorityPage',authorityPage,name="authorityPageUrl"),
     path('libraryPage',libraryPage,name="libraryPageUrl"),
+     path('',loginPage,name="loginPage"),
+    path('signupPage',signupPage,name="signupPage"),
     
     path('studentAdd',studentAdd,name="studentAdd"),
     path('teacherAdd',teacherAdd,name="teacherAdd"),
