@@ -98,8 +98,8 @@ def teacherAdd(request):
 
     if request.method=="POST":
 
-        fname=request.POST.get("firstname")
-        lname=request.POST.get("lastname")
+        fname=request.POST.get("fname")
+        lname=request.POST.get("lname")
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
@@ -123,8 +123,8 @@ def employeeAdd(request):
 
     if request.method=="POST":
 
-        fname=request.POST.get("firstname")
-        lname=request.POST.get("lastname")
+        fname=request.POST.get("fname")
+        lname=request.POST.get("lname")
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
@@ -149,8 +149,8 @@ def authorityAdd(request):
 
     if request.method=="POST":
 
-        fname=request.POST.get("firstname")
-        lname=request.POST.get("lastname")
+        fname=request.POST.get("fname")
+        lname=request.POST.get("lname")
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
@@ -174,15 +174,15 @@ def libraryAdd(request):
 
     if request.method=="POST":
 
-        bname=request.POST.get("Book_Name")
-        wname=request.POST.get("Writer_Name")
+        book=request.POST.get("b_name")
+        writer=request.POST.get("w_name")
         s_num=request.POST.get("Serial_No")
         a_date=request.POST.get("Acquisition_Date")
         r_date=request.POST.get("Return_Date")
 
         library=Library(
-            Book_Name=bname,
-            Writer_Name=wname,
+            Book_Name=book,
+            Writer_Name=writer,
             Serial_No=s_num,
             Acquisition_Date=a_date,
             Return_Date=r_date,
