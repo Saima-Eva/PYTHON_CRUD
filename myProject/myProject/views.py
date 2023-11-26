@@ -84,6 +84,7 @@ def studentAdd(request):
        profile_pic=request.FILES.get("profile_pic")
        
        print(profile_pic)
+       
        student=Students(
         profile_pic=profile_pic,
         First_Name=fname,
@@ -138,8 +139,12 @@ def employeeAdd(request):
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
+        myImage=request.FILES.get("profilepic")
+        
+        print(myImage)
 
         employee=Employees(
+            profile_pic=myImage,
             First_Name=fname,
             Last_Name=lname,
             Mobile=mobile_num,
@@ -164,8 +169,12 @@ def authorityAdd(request):
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
+        myImage=request.FILES.get("profilepic")
+        
+        print(myImage)
 
         authority=Authority(
+            profile_pic=myImage,
             First_Name=fname,
             Last_Name=lname,
             Mobile=mobile_num,
@@ -189,8 +198,12 @@ def libraryAdd(request):
         s_num=request.POST.get("Serial_No")
         a_date=request.POST.get("Acquisition_Date")
         r_date=request.POST.get("Return_Date")
+        myImage=request.FILES.get("profilepic")
+        
+        print(myImage)
 
         library=Library(
+            profile_pic=myImage,
             Book_Name=book,
             Writer_Name=writer,
             Serial_No=s_num,

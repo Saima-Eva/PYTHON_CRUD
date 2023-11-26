@@ -93,6 +93,7 @@
       <th>Mobile Number</th>
       <th>Email</th>
       <th>Age</th>
+      <th>Image</th>
       <th>Actions</th>
     </tr>
     {% for i in auth %}
@@ -103,6 +104,10 @@
       <td>{{i.Email}}</td>
       <td>{{i.Age}}</td>
       <td>
+
+        <img src="/media/{{i.profile_pic}}" height="30px">
+      </td>
+      <td>
         <a href="{% url 'editAuthority' i.id  %}">Edit</a>
         <a href="{% url 'deleteAuthority' i.id  %}">delete</a>
       </td>
@@ -111,7 +116,7 @@
   </table>
 
   <div class="container">
-    <form action="{%url 'authorityAdd'%}" method='post'>
+    <form action="{%url 'authorityAdd'%}" method='post' enctype="multipart/form-data">
 
         {% csrf_token %}
     
@@ -130,6 +135,9 @@
 
       <label for="age">Age</label>
       <input type="text" id="age" name="age" placeholder="Your age..">
+
+      <label for="age">Profile Pic</label>
+      <input type="file" id="age" name="profilepic" placeholder="Your Picture..">
 
       <input type="submit" value="Submit">
     </form>

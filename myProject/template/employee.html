@@ -92,6 +92,7 @@
       <th>Mobile Number</th>
       <th>Email</th>
       <th>Age</th>
+      <th>Image</th>
       <th>Action</th>
     </tr>
     {% for i in emp %}
@@ -102,6 +103,10 @@
       <td>{{i.Email}}</td>
       <td>{{i.Age}}</td>
       <td>
+
+        <img src="/media/{{i.profile_pic}}" height="30px">
+      </td>
+      <td>
         <a href="{% url 'editEmployee' i.id  %}">Edit</a>
         <a href="{% url 'deleteEmployee' i.id  %}">delete</a>
       </td>
@@ -110,7 +115,7 @@
   </table>
 
   <div class="container">
-    <form action="{%url 'employeeAdd'%}" method='post'>
+    <form action="{%url 'employeeAdd'%}" method='post'enctype="multipart/form-data">
 
         {% csrf_token %}
     
@@ -129,6 +134,9 @@
 
       <label for="age">Age</label>
       <input type="text" id="age" name="age" placeholder="Your age..">
+
+      <label for="age">Profile Pic</label>
+      <input type="file" id="age" name="profilepic" placeholder="Your Picture..">
 
       <input type="submit" value="Submit">
     </form>
