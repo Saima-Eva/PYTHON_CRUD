@@ -5,6 +5,9 @@ from myApp.models import *
 def homePage(request):
    return render(request,"home.html")
 
+def myprofile(request):
+   return render(request,"myprofile.html")
+
 
 def studentPage(request):
     student = Students.objects.all()
@@ -78,8 +81,11 @@ def studentAdd(request):
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
-
+       profile_pic=request.FILES.get("profile_pic")
+       
+       print(profile_pic)
        student=Students(
+        profile_pic=profile_pic,
         First_Name=fname,
         Last_Name=lname,
         Mobile=mobile_num,
@@ -103,8 +109,12 @@ def teacherAdd(request):
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
+        myImage=request.FILES.get("profilepic")
+        
+        print(myImage)
 
         teacher=Teachers(
+            profile_pic=myImage,
             First_Name=fname,
             Last_Name=lname,
             Mobile=mobile_num,

@@ -8,7 +8,7 @@ class Students(models.Model):
     Mobile=models.CharField(max_length=100,null=True)
     Email=models.CharField(max_length=100,null=True)
     Age=models.CharField(max_length=100,null=True)
-    Image=models.ImageField(upload_to="media/profile_pic",null=True)
+    profile_pic=models.ImageField(upload_to="media/profile_pic",null=True)
 
     def __str__(self):
      return self.First_Name+" "+self.Last_Name
@@ -20,6 +20,7 @@ class Teachers(models.Model):
     Mobile=models.CharField(max_length=100)
     Email=models.CharField(max_length=100)
     Age=models.CharField(max_length=100)
+    profile_pic=models.ImageField(upload_to="media/profile_pic",null=True)
 
     def __str__(self):
         return self.First_Name+" "+self.Last_Name

@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from.views import *
   
@@ -42,5 +44,11 @@ urlpatterns = [
     path('editLibrary/<str:myid>',editLibrary, name="editLibrary"),
     path('deleteLibrary/<str:myid>',deleteLibrary, name="deleteLibrary"),
     path('updatelibrary',updatelibrary, name="updatelibrary"),
-]
+    
+    
+    path('myprofile',myprofile, name="myprofile"),
+    
+    
+
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
