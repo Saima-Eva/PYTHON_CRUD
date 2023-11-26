@@ -92,6 +92,7 @@
       <th>Mobile Number</th>
       <th>Email</th>
       <th>Age</th>
+      <th>Actions</th>
     </tr>
     {% for i in tch %}
     <tr>
@@ -100,6 +101,10 @@
       <td>{{i.Mobile}}</td>
       <td>{{i.Email}}</td>
       <td>{{i.Age}}</td>
+      <td>
+        <a href="{% url 'editTeacher' i.id  %}">Edit</a>
+        <a href="{% url 'deleteTeacher' i.id  %}">Delete</a>
+      </td>
     </tr>
     {% endfor %}
   </table>

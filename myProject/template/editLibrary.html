@@ -1,0 +1,38 @@
+{%extends "home.html"%}
+
+{%block content%}
+
+<div class="container">
+    <form action="{% url 'updatelibrary'%}" method='post'>
+
+        {% csrf_token %}
+
+        {% for i in library %}
+    
+    <form>
+      <label for="fname">Library Id</label>
+      <input type="text" id="fname" value="{{i.id}}" name="libraryid" placeholder="Book Id..">
+
+      <label for="fname">Book Name</label>
+      <input type="text" id="fname" value="{{i.Book_Name}}" name="b_name" placeholder="Book Name..">
+
+      <label for="lastname">Writer Name</label>
+      <input type="text" id="lastname" value="{{i.Writer_Name}}" name="w_name" placeholder="Writer name..">
+
+      <label for="Mobile">Serial Number</label>
+      <input type="text" id="lname" value="{{i.Serial_No}}" name="Serial_No" placeholder="Serial Number..">
+
+      <label for="email">Acquisition Date</label>
+      <input type="text" id="email" value="{{i.Acquisition_Date}}" name="Acquisition_Date" placeholder="Acquisition Date..">
+
+      <label for="age">Return Date</label>
+      <input type="text" id="age" value="{{i.Return_Date}}" name="Return_Date" placeholder="Return Date..">
+
+      <input type="submit" value="Update">
+      {% endfor %}
+    </form>
+   
+  </div>
+
+
+{%endblock%}

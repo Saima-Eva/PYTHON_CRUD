@@ -92,6 +92,7 @@
       <th>Serial Number</th>
       <th>Acquisition Date</th>
       <th>Return Date</th>
+      <th>Actions</th>
     </tr>
     {% for i in lib %}
     <tr>
@@ -100,6 +101,10 @@
       <td>{{i.Serial_No}}</td>
       <td>{{i.Acquisition_Date}}</td>
       <td>{{i.Return_Date}}</td>
+      <td>
+        <a href="{% url 'editLibrary' i.id  %}">Edit</a>
+        <a href="{% url 'deleteLibrary' i.id  %}">delete</a>
+      </td>
     </tr>
     {% endfor %}
   </table>

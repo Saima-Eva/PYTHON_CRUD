@@ -1,0 +1,38 @@
+{%extends "home.html"%}
+
+{%block content%}
+
+<div class="container">
+    <form action="{% url 'updatestudent'%}" method='post'>
+
+        {% csrf_token %}
+
+        {% for i in student %}
+    
+    <form>
+      <label for="fname">Student Id</label>
+      <input type="text" id="fname" value="{{i.id}}" name="studentid" placeholder="Your id..">
+
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" value="{{i.First_Name}}" name="fname" placeholder="Your name..">
+
+      <label for="lastname">Last Name</label>
+      <input type="text" id="lastname" value="{{i.Last_Name}}" name="lname" placeholder="Your last name..">
+
+      <label for="Mobile">Mobile Number</label>
+      <input type="text" id="lname" value="{{i.Mobile}}" name="mobile" placeholder="Your mobile number..">
+
+      <label for="email">Email</label>
+      <input type="text" id="email" value="{{i.Email}}" name="email" placeholder="Your email..">
+
+      <label for="age">Age</label>
+      <input type="text" id="age" value="{{i.Age}}" name="age" placeholder="Your age..">
+
+      <input type="submit" value="Update">
+      {% endfor %}
+    </form>
+   
+  </div>
+
+
+{%endblock%}

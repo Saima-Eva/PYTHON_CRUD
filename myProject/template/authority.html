@@ -93,6 +93,7 @@
       <th>Mobile Number</th>
       <th>Email</th>
       <th>Age</th>
+      <th>Actions</th>
     </tr>
     {% for i in auth %}
     <tr>
@@ -101,6 +102,10 @@
       <td>{{i.Mobile}}</td>
       <td>{{i.Email}}</td>
       <td>{{i.Age}}</td>
+      <td>
+        <a href="{% url 'editAuthority' i.id  %}">Edit</a>
+        <a href="{% url 'deleteAuthority' i.id  %}">delete</a>
+      </td>
     </tr>
     {% endfor %}
   </table>

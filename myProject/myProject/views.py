@@ -73,8 +73,8 @@ def studentAdd(request):
 
     if request.method=="POST":
 
-       fname=request.POST.get("firstname")
-       lname=request.POST.get("lastname")
+       fname=request.POST.get("fname")
+       lname=request.POST.get("lname")
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
@@ -193,3 +193,204 @@ def libraryAdd(request):
         return redirect("libraryPageUrl")
 
     return render(request, "library.html")
+
+
+
+#Student Update
+def editStudent(request, myid):
+    student=Students.objects.filter(id=myid)
+    context={
+        "student":student,
+    }
+    return render(request, "editStudent.html", context)
+
+
+
+def deleteStudent(request, myid):
+    student=Students.objects.filter(id=myid)
+    student.delete()
+    return redirect("studentPageUrl")
+
+
+def updatestudent(request):
+
+    if request.method=="POST":
+    
+       studentid=request.POST.get("studentid")
+       fname=request.POST.get("fname")
+       lname=request.POST.get("lname")
+       mobile_num=request.POST.get("mobile")
+       s_email=request.POST.get("email")
+       s_age=request.POST.get("age")
+
+       student=Students(
+        id=studentid, 
+        First_Name=fname,
+        Last_Name=lname,
+        Mobile=mobile_num,
+        Email=s_email,
+        Age=s_age,
+
+       )
+       student.save()
+
+       return redirect("studentPageUrl")
+    
+    
+#Teacher Update
+def editTeacher(request, myid):
+    teacher=Teachers.objects.filter(id=myid)
+    context={
+        "teacher":teacher,
+    }
+    return render(request, "editTeacher.html", context)  
+
+def deleteTeacher(request, myid):
+    teacher=Teachers.objects.filter(id=myid)
+    teacher.delete()
+    return redirect("teacherPageUrl")
+
+
+def updateteacher(request):
+
+    if request.method=="POST":
+    
+       teacherid=request.POST.get("teacherid")
+       fname=request.POST.get("firstname")
+       lname=request.POST.get("lastname")
+       mobile_num=request.POST.get("mobile")
+       s_email=request.POST.get("email")
+       s_age=request.POST.get("age")
+
+       teacher=Teachers(
+        id=teacherid, 
+        First_Name=fname,
+        Last_Name=lname,
+        Mobile=mobile_num,
+        Email=s_email,
+        Age=s_age,
+
+       )
+       teacher.save()
+
+       return redirect("teacherPageUrl")
+   
+   
+#Employee update
+def editEmployee(request, myid):
+    employee=Employees.objects.filter(id=myid)
+    context={
+        "employee":employee,
+    }
+    return render(request, "editEmployee.html", context)  
+
+def deleteEmployee(request, myid):
+    employee=Employees.objects.filter(id=myid)
+    employee.delete()
+    return redirect("employeePageUrl")
+
+
+def updateemployee(request):
+
+    if request.method=="POST":
+    
+       employeeid=request.POST.get("employeeid")
+       fname=request.POST.get("firstname")
+       lname=request.POST.get("lastname")
+       mobile_num=request.POST.get("mobile")
+       s_email=request.POST.get("email")
+       s_age=request.POST.get("age")
+
+       employee=Employees(
+        id=employeeid, 
+        First_Name=fname,
+        Last_Name=lname,
+        Mobile=mobile_num,
+        Email=s_email,
+        Age=s_age,
+
+       )
+       employee.save()
+
+       return redirect("employeePageUrl")
+   
+   
+#Authority update
+def editAuthority(request, myid):
+    authority=Authority.objects.filter(id=myid)
+    context={
+        "authority":authority,
+    }
+    return render(request, "editAuthority.html", context)  
+
+def deleteAuthority(request, myid):
+    authority=Authority.objects.filter(id=myid)
+    authority.delete()
+    return redirect("authorityPageUrl")
+
+
+def updateauthority(request):
+
+    if request.method=="POST":
+    
+       authorityid=request.POST.get("authorityid")
+       fname=request.POST.get("fname")
+       lname=request.POST.get("lname")
+       mobile_num=request.POST.get("mobile")
+       s_email=request.POST.get("email")
+       s_age=request.POST.get("age")
+
+       authority=Authority(
+        id=authorityid, 
+        First_Name=fname,
+        Last_Name=lname,
+        Mobile=mobile_num,
+        Email=s_email,
+        Age=s_age,
+
+       )
+       authority.save()
+
+       return redirect("authorityPageUrl")
+   
+   
+#Library update
+def editLibrary(request, myid):
+    library=Library.objects.filter(id=myid)
+    context={
+        "library":library,
+    }
+    return render(request, "editLibrary.html", context)  
+
+def deleteLibrary(request, myid):
+    library=Library.objects.filter(id=myid)
+    library.delete()
+    return redirect("libraryPageUrl")
+
+
+def updatelibrary(request):
+
+    if request.method=="POST":
+    
+       Libraryid=request.POST.get("libraryid")
+       b_name=request.POST.get("b_name")
+       w_name=request.POST.get("w_name")
+       Serial_No=request.POST.get("Serial_No")
+       Acquisition_Date=request.POST.get("Acquisition_Date")
+       r_date=request.POST.get("r_date")
+
+    library=Library(
+        id=Libraryid, 
+        Book_Name=b_name,
+        Writer_Name=w_name,
+        Serial_No=Serial_No,
+        Acquisition_Date=Acquisition_Date,
+        Return_Date=r_date,
+
+       )
+    library.save()
+
+    return redirect("libraryPageUrl")
+   
+
+    
