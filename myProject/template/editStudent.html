@@ -3,23 +3,90 @@
 {%block content%}
 
 <div class="container">
-    <form action="{% url 'updatestudent'%}" method='post'>
+    <form action="{% url 'updatestudent'%}" method='post' enctype="multipart/form-data">
 
         {% csrf_token %}
 
         {% for i in student %}
   
+        <!-- profile card css -->
+        <style>
         
-       <!-- profile card -->
-        <div class="card"> 
-          <div class="card_img"> 
-              <img src="/media/{{i.profile_pic}}" alt="user-image">
-          </div>
-          <div class="card_info"> 
+        .card {
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          max-width: 380px;
+          text-align: center;
+          margin-top: 60px;
+          background-color: #34dbdb;
+          position: relative;
+          margin: auto;
+          
+      }
+      .card_cover img {
+        width: 100%;
+        height: 300px; 
+        object-fit: cover;
+    }
+      .card_img {
+          width: 120px;
+          height: 120px;
+          overflow: hidden;
+          border-radius: 50%;
+          margin: -60px auto 0;
+      }
+      
+      .card_img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+      }
+      .card_info {
+          padding-bottom: 20px;
+      }
+      h5.phone{
+        margin-bottom: -15px;
+        margin-left: -200px;
+      }
+      h5.Age{
+        margin-top: -17px;
+        margin-left: -280px;
+
+      }
+
+      h5.email{
+        margin-left: -110px;
+      }
+      
+     p_e_box{
+      padding-bottom: 10px;
+     }
+      a {
+        text-decoration: none;
+        color: rgb(183, 0, 255);
+      }
+      a:hover{
+        color: black;
+      }
+      </style>
+      <!-- profile card -->
+      <div class="card">
+        <div class="card_cover">
+          <img src="/media/{{i.profile_pic}}" alt="cove-photo">
+        </div>
+        <div class="card_img"> 
+            <img src="/media/{{i.profile_pic}}" alt="user-image">
+        </div>
+        <div class="card_info"> 
               <h2>{{i.First_Name}} {{i.Last_Name}} </h2>
-              <a href="https://saimaeva.netlify.app/">Portfolio</a>
-          </div>
-      </div>
+             <div class="p_e_box">
+              <h5 class="phone">Phone:{{i.Mobile}}</h5>
+              <h5 class="email">Email:{{i.Email}}</h5>
+              <h5 class="Age">Age:{{i.Age}}</h5>
+            </div>
+            <a href="https://saimaeva.netlify.app/">Portfolio</a>
+        </div>
+    </div>
 
 
     
@@ -41,6 +108,9 @@
 
       <label for="age">Age</label>
       <input type="text" id="age" value="{{i.Age}}" name="age" placeholder="Your age..">
+
+      <label for="image">Image</label>
+      <input type="file" id="image" value="{{i.profile_pic}}" name="profile_pic" placeholder="Your image..">
 
       <input type="submit" value="Update">
       {% endfor %}

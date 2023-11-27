@@ -110,7 +110,7 @@ def teacherAdd(request):
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
-        myImage=request.FILES.get("profilepic")
+        myImage=request.FILES.get("profile_pic")
         
         print(myImage)
 
@@ -139,7 +139,7 @@ def employeeAdd(request):
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
-        myImage=request.FILES.get("profilepic")
+        myImage=request.FILES.get("profile_pic")
         
         print(myImage)
 
@@ -169,7 +169,7 @@ def authorityAdd(request):
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
-        myImage=request.FILES.get("profilepic")
+        myImage=request.FILES.get("profile_pic")
         
         print(myImage)
 
@@ -198,7 +198,7 @@ def libraryAdd(request):
         s_num=request.POST.get("Serial_No")
         a_date=request.POST.get("Acquisition_Date")
         r_date=request.POST.get("Return_Date")
-        myImage=request.FILES.get("profilepic")
+        myImage=request.FILES.get("profile_pic")
         
         print(myImage)
 
@@ -245,6 +245,7 @@ def updatestudent(request):
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
+       profile_pic=request.FILES.get("profile_pic")
 
        student=Students(
         id=studentid, 
@@ -253,6 +254,7 @@ def updatestudent(request):
         Mobile=mobile_num,
         Email=s_email,
         Age=s_age,
+        profile_pic=profile_pic,
 
        )
        student.save()
@@ -284,6 +286,7 @@ def updateteacher(request):
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
+       profile_pic=request.FILES.get("profile_pic")
 
        teacher=Teachers(
         id=teacherid, 
@@ -292,6 +295,7 @@ def updateteacher(request):
         Mobile=mobile_num,
         Email=s_email,
         Age=s_age,
+        profile_pic=profile_pic,
 
        )
        teacher.save()
@@ -323,6 +327,7 @@ def updateemployee(request):
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
+       profile_pic=request.FILES.get("profile_pic")
 
        employee=Employees(
         id=employeeid, 
@@ -331,6 +336,7 @@ def updateemployee(request):
         Mobile=mobile_num,
         Email=s_email,
         Age=s_age,
+        profile_pic=profile_pic,
 
        )
        employee.save()
@@ -362,6 +368,7 @@ def updateauthority(request):
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
+       profile_pic=request.FILES.get("profile_pic")
 
        authority=Authority(
         id=authorityid, 
@@ -370,6 +377,7 @@ def updateauthority(request):
         Mobile=mobile_num,
         Email=s_email,
         Age=s_age,
+        profile_pic=profile_pic,
 
        )
        authority.save()
@@ -401,6 +409,7 @@ def updatelibrary(request):
        Serial_No=request.POST.get("Serial_No")
        Acquisition_Date=request.POST.get("Acquisition_Date")
        r_date=request.POST.get("r_date")
+       profile_pic=request.FILES.get("profile_pic")
 
     library=Library(
         id=Libraryid, 
@@ -409,6 +418,7 @@ def updatelibrary(request):
         Serial_No=Serial_No,
         Acquisition_Date=Acquisition_Date,
         Return_Date=r_date,
+        profile_pic=profile_pic,
 
        )
     library.save()
