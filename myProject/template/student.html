@@ -39,6 +39,8 @@
     {% endfor %}
   </table>
 
+  {% include "messages.html" %}
+
   <div class="container">
     <form action="{%url 'studentAdd'%}" method='post' enctype="multipart/form-data">
 

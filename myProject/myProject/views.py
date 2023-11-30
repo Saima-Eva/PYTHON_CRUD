@@ -1,14 +1,23 @@
 from django.shortcuts import redirect, render
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
+from django.contrib import messages
+
+
 from myApp.models import *
 
 
+@login_required
 def homePage(request):
    return render(request,"home.html")
 
+@login_required
 def myprofile(request):
    return render(request,"myprofile.html")
 
-
+@login_required
 def studentPage(request):
     student = Students.objects.all()
 
@@ -19,6 +28,8 @@ def studentPage(request):
     return render(request,"student.html",context)
 
 
+
+@login_required
 def teacherPage(request):
 
     teacher = Teachers.objects.all()
@@ -30,6 +41,7 @@ def teacherPage(request):
     return render(request,"teacher.html",context)
 
 
+@login_required
 def employeePage(request):
 
     employee = Employees.objects.all()
@@ -40,15 +52,57 @@ def employeePage(request):
 
     return render(request,"employee.html",context)
 
-def loginPage(request):
 
+def loginPage(request):
+    myMessage={
+        'Error_Message':'User Not Match',
+        'Success_Message':'Login Successfully',
+    }
+    if request.method=='POST':
+        user_name=request.POST.get("username")
+        myPassword=request.POST.get("pass")
+        
+        
+        user=authenticate(username=user_name, password=myPassword)
+        if user:
+            login(request, user)
+            return redirect("homePageUrl")
+        else:
+            messages.warning(request, myMessage["Error_Message"])
+        
     return render(request,"login.html")
 
+
 def signupPage(request):
+    
+    myMessage={
+        'Password_Error': 'Password and Confirm Password Not Match',
+        'Password_Success': 'User Create Successfully',
+    }
+    if request.method=='POST':
+        user_name=request.POST.get("username")
+        myEmail=request.POST.get("email")
+        pass1=request.POST.get("password1")
+        pass2=request.POST.get("password2")
+        
+        if pass1 != pass2:
+            messages.error(request, myMessage["Password_Error"])
+        else:
+            myusers = User.objects.create_user(user_name, myEmail, pass2)
+            myusers.save()
+            messages.success(request, myMessage['Password_Success'])
+            return redirect("loginPage")
 
     return render(request,"signup.html")
 
 
+def logoutPage(request):
+    logout(request)
+    return redirect("loginPage")
+    
+
+
+@login_required
 def authorityPage(request):
 
     authority = Authority.objects.all()
@@ -59,7 +113,7 @@ def authorityPage(request):
 
     return render(request,"authority.html",context)
 
-
+@login_required
 def libraryPage(request):
 
     library = Library.objects.all()
@@ -72,7 +126,13 @@ def libraryPage(request):
 
 
 #Student Page
+@login_required
 def studentAdd(request):
+    
+    my_Messages={
+        'Error_Message':'Student Add Failed',
+        'Success_Message':'Student Add Successfully'
+    }
 
     if request.method=="POST":
 
@@ -86,7 +146,6 @@ def studentAdd(request):
        print(profile_pic)
        
        student=Students(
-        profile_pic=profile_pic,
         First_Name=fname,
         Last_Name=lname,
         Mobile=mobile_num,
@@ -94,16 +153,34 @@ def studentAdd(request):
         Age=s_age,
 
        )
+       
+       if profile_pic:
+           student.profile_pic = profile_pic
+       else:
+           student.profile_pic = 'C:/Users/ROWTECH/Desktop/PYTHON_CRUD/myProject/media/media/profile_pic/default img.jpg'
+          
+       
        student.save()
+       
+       messages.success(request, my_Messages["Success_Message"])
+    else:
+        messages.error(request, my_Messages["Error_Message"])
+           
 
-       return redirect("studentPageUrl")
+    return redirect("studentPageUrl")
 
     return render(request, "student.html")
 
 #Teacher Page
+@login_required
 def teacherAdd(request):
+    
+     my_Messages={
+        'Error_Message':'Teacher Add Failed',
+        'Success_Message':'Teacher Add Successfully'
+    }
 
-    if request.method=="POST":
+     if request.method=="POST":
 
         fname=request.POST.get("fname")
         lname=request.POST.get("lname")
@@ -123,14 +200,29 @@ def teacherAdd(request):
             Age=s_age,
 
             )
+        
+        if myImage:
+           teacher.profile_pic = myImage
+        else:
+           teacher.profile_pic = 'C:/Users/ROWTECH/Desktop/PYTHON_CRUD/myProject/media/media/profile_pic/default img.jpg'
+        
         teacher.save()
+        
+        messages.success(request, my_Messages["Success_Message"])
+        
 
         return redirect("teacherPageUrl")
 
-    return render(request, "teacher.html")
+     return render(request, "teacher.html")
 
 #Employee Page
+@login_required
 def employeeAdd(request):
+    
+    my_Messages={
+        'Error_Message':'Employee Add Failed',
+        'Success_Message':'Employee Add Successfully'
+    }
 
     if request.method=="POST":
 
@@ -152,7 +244,16 @@ def employeeAdd(request):
             Age=s_age,
 
             )
+        
+        
+        if myImage:
+           employee.profile_pic = myImage
+        else:
+           employee.profile_pic = 'C:/Users/ROWTECH/Desktop/PYTHON_CRUD/myProject/media/media/profile_pic/default img.jpg'
+        
         employee.save()
+        
+        messages.success(request, my_Messages["Success_Message"])
 
         return redirect("employeePageUrl")
 
@@ -160,9 +261,15 @@ def employeeAdd(request):
 
 
 #Authority Page
+@login_required
 def authorityAdd(request):
+    
+     my_Messages={
+        'Error_Message':'Authority Add Failed',
+        'Success_Message':'Authority Add Successfully'
+    }
 
-    if request.method=="POST":
+     if request.method=="POST":
 
         fname=request.POST.get("fname")
         lname=request.POST.get("lname")
@@ -182,14 +289,29 @@ def authorityAdd(request):
             Age=s_age,
 
             )
+        
+        if myImage:
+           authority.profile_pic = myImage
+        else:
+           authority.profile_pic = 'C:/Users/ROWTECH/Desktop/PYTHON_CRUD/myProject/media/media/profile_pic/default img.jpg'
+        
         authority.save()
+        
+        messages.success(request, my_Messages["Success_Message"])
+
 
         return redirect("authorityPageUrl")
 
-    return render(request, "authority.html")
+     return render(request, "authority.html")
 
 #Library Page
+@login_required
 def libraryAdd(request):
+    
+    my_Messages={
+        'Error_Message':'Book Add Failed',
+        'Success_Message':'Book Add Successfully'
+    }
 
     if request.method=="POST":
 
@@ -212,6 +334,13 @@ def libraryAdd(request):
 
             )
         library.save()
+        
+        messages.success(request, my_Messages["Success_Message"])
+        
+        if myImage:
+           library.profile_pic = myImage
+        else:
+           library.profile_pic = 'C:/Users/ROWTECH/Desktop/PYTHON_CRUD/myProject/media/media/profile_pic/default img.jpg'
 
         return redirect("libraryPageUrl")
 
@@ -220,6 +349,7 @@ def libraryAdd(request):
 
 
 #Student Update
+@login_required
 def editStudent(request, myid):
     student=Students.objects.filter(id=myid)
     context={
@@ -263,6 +393,7 @@ def updatestudent(request):
     
     
 #Teacher Update
+@login_required
 def editTeacher(request, myid):
     teacher=Teachers.objects.filter(id=myid)
     context={
@@ -270,12 +401,14 @@ def editTeacher(request, myid):
     }
     return render(request, "editTeacher.html", context)  
 
+@login_required
 def deleteTeacher(request, myid):
     teacher=Teachers.objects.filter(id=myid)
     teacher.delete()
     return redirect("teacherPageUrl")
 
 
+@login_required
 def updateteacher(request):
 
     if request.method=="POST":
@@ -304,6 +437,7 @@ def updateteacher(request):
    
    
 #Employee update
+@login_required
 def editEmployee(request, myid):
     employee=Employees.objects.filter(id=myid)
     context={
@@ -311,12 +445,14 @@ def editEmployee(request, myid):
     }
     return render(request, "editEmployee.html", context)  
 
+@login_required
 def deleteEmployee(request, myid):
     employee=Employees.objects.filter(id=myid)
     employee.delete()
     return redirect("employeePageUrl")
 
 
+@login_required
 def updateemployee(request):
 
     if request.method=="POST":
@@ -345,6 +481,7 @@ def updateemployee(request):
    
    
 #Authority update
+@login_required
 def editAuthority(request, myid):
     authority=Authority.objects.filter(id=myid)
     context={
@@ -352,12 +489,14 @@ def editAuthority(request, myid):
     }
     return render(request, "editAuthority.html", context)  
 
+@login_required
 def deleteAuthority(request, myid):
     authority=Authority.objects.filter(id=myid)
     authority.delete()
     return redirect("authorityPageUrl")
 
 
+@login_required
 def updateauthority(request):
 
     if request.method=="POST":
@@ -386,6 +525,7 @@ def updateauthority(request):
    
    
 #Library update
+@login_required
 def editLibrary(request, myid):
     library=Library.objects.filter(id=myid)
     context={
@@ -393,12 +533,13 @@ def editLibrary(request, myid):
     }
     return render(request, "editLibrary.html", context)  
 
+@login_required
 def deleteLibrary(request, myid):
     library=Library.objects.filter(id=myid)
     library.delete()
     return redirect("libraryPageUrl")
 
-
+@login_required
 def updatelibrary(request):
 
     if request.method=="POST":
@@ -426,4 +567,4 @@ def updatelibrary(request):
     return redirect("libraryPageUrl")
    
 
-    
+   

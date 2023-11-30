@@ -114,6 +114,8 @@
     {% endfor %}
   </table>
 
+  {% include "messages.html" %}
+
   <div class="container">
     <form action="{%url 'employeeAdd'%}" method='post'enctype="multipart/form-data">
 

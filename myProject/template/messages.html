@@ -1,0 +1,19 @@
+{% if messages %}
+{% for message in messages %}
+
+{% if message.tags == 'success' %}
+<div class="success-msg">
+  <i class="fa fa-check"></i>
+  {{message}}
+</div>
+{% endif %}
+
+{% if message.tags == 'error' %}
+<div class="error-msg">
+  <i class="fa fa-warning"></i>
+  {{message}}
+</div>
+{% endif %}
+
+{% endfor %}
+{% endif %}

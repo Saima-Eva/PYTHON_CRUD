@@ -5,6 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <style>
+
+      .error-msg {
+        color: #9f0000;
+        background-color: #FEEFB3;
+        text-align: center;
+        padding: 10px;
+        margin: 0 auto;
+        max-width: 400px;
+      }
+
+      .success-msg {
+        color: #270;
+        background-color: #DFF2BF;
+        text-align: center;
+        padding: 10px;
+        margin: 0 auto;
+        max-width: 400px;
+      }
+
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -151,7 +170,8 @@
 
     {% include "navbar.html" %}
    {% block content %}
-<h1>Home Page</h1>
+
+  <h1>Hello I am {{user.username}}</h1>
    {% endblock %}
    {% include "footer.html" %}
 

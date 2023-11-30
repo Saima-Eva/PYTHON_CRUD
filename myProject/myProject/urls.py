@@ -15,6 +15,7 @@ urlpatterns = [
     path('libraryPage',libraryPage,name="libraryPageUrl"),
     path('',loginPage,name="loginPage"),
     path('signupPage',signupPage,name="signupPage"),
+    path('logoutPage',logoutPage,name="logoutPage"),
     
     path('studentAdd',studentAdd,name="studentAdd"),
     path('teacherAdd',teacherAdd,name="teacherAdd"),
@@ -44,6 +45,7 @@ urlpatterns = [
     path('editLibrary/<str:myid>',editLibrary, name="editLibrary"),
     path('deleteLibrary/<str:myid>',deleteLibrary, name="deleteLibrary"),
     path('updatelibrary',updatelibrary, name="updatelibrary"),
+    
     
     
     path('myprofile',myprofile, name="myprofile"),
