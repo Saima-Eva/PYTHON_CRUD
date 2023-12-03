@@ -11,7 +11,15 @@ from myApp.models import *
 
 @login_required
 def homePage(request):
-   return render(request,"home.html")
+
+  student=Students.objects.filter(Marks__gt = 70)
+  teacher=Teachers.objects.all()
+  employee=Employees.objects.all()
+  authority=Authority.objects.all()
+  library=Library.objects.all()
+  
+  return render(request,"home.html", {'student':student, 'teacher':teacher, 'employee':employee, 'authority':authority, 'library':library})
+
 
 @login_required
 def myprofile(request):
@@ -141,6 +149,7 @@ def studentAdd(request):
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
+       s_Marks=request.POST.get("Marks")
        profile_pic=request.FILES.get("profile_pic")
        
        print(profile_pic)
@@ -151,6 +160,7 @@ def studentAdd(request):
         Mobile=mobile_num,
         Email=s_email,
         Age=s_age,
+        Marks=s_Marks,
 
        )
        
@@ -187,6 +197,7 @@ def teacherAdd(request):
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
+        ID=request.POST.get("ID")
         myImage=request.FILES.get("profile_pic")
         
         print(myImage)
@@ -198,6 +209,7 @@ def teacherAdd(request):
             Mobile=mobile_num,
             Email=s_email,
             Age=s_age,
+            ID=ID,
 
             )
         
@@ -231,6 +243,7 @@ def employeeAdd(request):
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
+        ID=request.POST.get("ID")
         myImage=request.FILES.get("profile_pic")
         
         print(myImage)
@@ -242,6 +255,7 @@ def employeeAdd(request):
             Mobile=mobile_num,
             Email=s_email,
             Age=s_age,
+            ID=ID,
 
             )
         
@@ -276,6 +290,7 @@ def authorityAdd(request):
         mobile_num=request.POST.get("mobile")
         s_email=request.POST.get("email")
         s_age=request.POST.get("age")
+        ID=request.POST.get("ID")
         myImage=request.FILES.get("profile_pic")
         
         print(myImage)
@@ -287,6 +302,7 @@ def authorityAdd(request):
             Mobile=mobile_num,
             Email=s_email,
             Age=s_age,
+            ID=ID,
 
             )
         
@@ -320,6 +336,7 @@ def libraryAdd(request):
         s_num=request.POST.get("Serial_No")
         a_date=request.POST.get("Acquisition_Date")
         r_date=request.POST.get("Return_Date")
+        ID=request.POST.get("ID")
         myImage=request.FILES.get("profile_pic")
         
         print(myImage)
@@ -331,6 +348,7 @@ def libraryAdd(request):
             Serial_No=s_num,
             Acquisition_Date=a_date,
             Return_Date=r_date,
+            ID=ID,
 
             )
         library.save()
@@ -375,6 +393,7 @@ def updatestudent(request):
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
+       s_Marks=request.POST.get("Marks")
        profile_pic=request.FILES.get("profile_pic")
 
        student=Students(
@@ -384,6 +403,7 @@ def updatestudent(request):
         Mobile=mobile_num,
         Email=s_email,
         Age=s_age,
+        Marks=s_Marks,
         profile_pic=profile_pic,
 
        )
@@ -419,6 +439,7 @@ def updateteacher(request):
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
+       ID=request.POST.get("ID")
        profile_pic=request.FILES.get("profile_pic")
 
        teacher=Teachers(
@@ -428,6 +449,7 @@ def updateteacher(request):
         Mobile=mobile_num,
         Email=s_email,
         Age=s_age,
+        ID=ID,
         profile_pic=profile_pic,
 
        )
@@ -463,6 +485,7 @@ def updateemployee(request):
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
+       ID=request.POST.get("ID")
        profile_pic=request.FILES.get("profile_pic")
 
        employee=Employees(
@@ -472,6 +495,7 @@ def updateemployee(request):
         Mobile=mobile_num,
         Email=s_email,
         Age=s_age,
+        ID=ID,
         profile_pic=profile_pic,
 
        )
@@ -507,6 +531,7 @@ def updateauthority(request):
        mobile_num=request.POST.get("mobile")
        s_email=request.POST.get("email")
        s_age=request.POST.get("age")
+       ID=request.POST.get("ID")
        profile_pic=request.FILES.get("profile_pic")
 
        authority=Authority(
@@ -516,6 +541,7 @@ def updateauthority(request):
         Mobile=mobile_num,
         Email=s_email,
         Age=s_age,
+        ID=ID,
         profile_pic=profile_pic,
 
        )
@@ -550,6 +576,7 @@ def updatelibrary(request):
        Serial_No=request.POST.get("Serial_No")
        Acquisition_Date=request.POST.get("Acquisition_Date")
        r_date=request.POST.get("r_date")
+       ID=request.POST.get("ID")
        profile_pic=request.FILES.get("profile_pic")
 
     library=Library(
@@ -559,6 +586,7 @@ def updatelibrary(request):
         Serial_No=Serial_No,
         Acquisition_Date=Acquisition_Date,
         Return_Date=r_date,
+        ID=ID,
         profile_pic=profile_pic,
 
        )

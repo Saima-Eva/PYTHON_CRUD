@@ -8,6 +8,7 @@ class Students(models.Model):
     Mobile=models.CharField(max_length=100,null=True)
     Email=models.CharField(max_length=100,null=True)
     Age=models.CharField(max_length=100,null=True)
+    Marks=models.IntegerField(max_length=100, null=True)
     profile_pic=models.ImageField(upload_to="media/profile_pic",null=True)
 
     def __str__(self):
@@ -20,6 +21,7 @@ class Teachers(models.Model):
     Mobile=models.CharField(max_length=100)
     Email=models.CharField(max_length=100)
     Age=models.CharField(max_length=100)
+    ID=models.IntegerField(max_length=100, null=True)
     profile_pic=models.ImageField(upload_to="media/profile_pic",null=True)
 
     def __str__(self):
@@ -33,6 +35,7 @@ class Employees(models.Model):
     Mobile=models.CharField(max_length=100, null=True)
     Email=models.CharField(max_length=100, null=True)
     Age=models.CharField(max_length=100, null=True)
+    ID=models.IntegerField(max_length=100, null=True)
     profile_pic=models.ImageField(upload_to="media/profile_pic",null=True)
 
     def __str__(self):
@@ -45,6 +48,7 @@ class Authority(models.Model):
     Mobile=models.CharField(max_length=100, null=True)
     Email=models.CharField(max_length=100, null=True)
     Age=models.CharField(max_length=100, null=True)
+    ID=models.IntegerField(max_length=100, null=True)
     profile_pic=models.ImageField(upload_to="media/profile_pic",null=True)
 
     def __str__(self):
@@ -57,6 +61,7 @@ class Library(models.Model):
     Serial_No=models.CharField(max_length=100, null=True)
     Acquisition_Date=models.CharField(max_length=100, null=True)
     Return_Date=models.CharField(max_length=100, null=True)
+    ID=models.IntegerField(max_length=100, null=True)
     profile_pic=models.ImageField(upload_to="media/profile_pic",null=True)
 
     def __str__(self):

@@ -164,14 +164,157 @@
         }
       </style>
 
-     
+            <!-- profile card -->
+            <style>
+        
+              .card {
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                max-width: 380px;
+                text-align: center;
+                margin-top: 60px;
+                background-color: #34dbdb;
+                position: relative;
+                margin: auto;
+                display: inline-block;
+                
+            }
+            .card_cover img {
+              width: 100%;
+              height: 300px; 
+              object-fit: cover;
+          }
+            .card_img {
+                width: 120px;
+                height: 120px;
+                overflow: hidden;
+                border-radius: 50%;
+                margin: -60px auto 0;
+            }
+            
+            .card_img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            .card_info {
+                padding-bottom: 20px;
+            }
+            h5.phone{
+              margin-bottom: -15px;
+              margin-left: -200px;
+            }
+            h5.Age{
+              margin-top: -17px;
+              margin-left: -280px;
+      
+            }
+      
+            h5.email{
+              margin-left: -110px;
+            }
+            
+           p_e_box{
+            padding-bottom: 10px;
+           }
+            a {
+              text-decoration: none;
+              color: rgb(183, 0, 255);
+            }
+            a:hover{
+              color: black;
+            }
+            </style>
+
+    
 </head>
 <body>
 
     {% include "navbar.html" %}
    {% block content %}
 
-  <h1>Hello I am {{user.username}}</h1>
+   <h1 style="text-align: center; color: rgb(228, 161, 161);">Student Information</h1>
+   {%for i in student %}
+   <div class="card">
+     <img src="/media/{{i.profile_pic}}" alt="Student" style="width:100%; height: 300px;">
+     <h1>{{i.First_Name}} {{i.Last_Name}}</h1>
+     <p class="title">{{i.Mobile}}</p>
+     <p>Dhong University</p>
+     
+     <p ><button><a href="{% url 'editStudent' i.id %}" style="color: rgb(53, 49, 49);">Update</a></button></p>
+     <p><button><a href="{% url 'deleteStudent' i.id %}"  style="color: rgb(53, 49, 49);">Delete</a></button></p>
+   </div>
+
+   {% endfor %}
+   
+   <h1 style="text-align: center; color: rgb(228, 161, 161);">Teacher Information</h1>
+
+   {%for i in teacher %}
+   <div class="card">
+     <img src="/media/{{i.profile_pic}}" alt="Teacher" style="width:100%">
+     <h1>{{i.First_Name}} {{i.Last_Name}} </h1>
+     <p class="title">{{i.Mobile}}</p>
+     <p>Dhong University</p>
+     
+     <p><button><a href="{% url 'editTeacher' i.id %}" style="color: rgb(53, 49, 49);">Update</a></button></p>
+     <p><button><a href="{% url 'deleteTeacher' i.id %}"  style="color:rgb(53, 49, 49);">Delete</a></button></p>
+   </div>
+   {% endfor %}
+   
+   <h1 style="text-align: center; color: rgb(228, 161, 161);"> Employee Information</h1>
+   {%for i in employee %}
+   <div class="card">
+    <img src="/media/{{i.profile_pic}}" alt="Employee" style="width:100%">
+    <h1>{{i.First_Name}} {{i.Last_Name}} </h1>
+    <p class="title">{{i.Mobile}}</p>
+    <p>Dhong University</p>
+     <div style="margin: 24px 0;">
+       <a href="#"><i class="fa fa-dribbble"></i></a> 
+       <a href="#"><i class="fa fa-twitter"></i></a>  
+       <a href="#"><i class="fa fa-linkedin"></i></a>  
+       <a href="#"><i class="fa fa-facebook"></i></a> 
+     </div>
+     <p><button><a href="{% url 'editEmployee' i.id %}" style="color: rgb(53, 49, 49);">Update</a></button></p>
+     <p><button><a href="{% url 'deleteEmployee' i.id %}"  style="color: rgb(39, 38, 38);">Delete</a></button></p>
+   </div>
+   {% endfor %}
+
+   <h1 style="text-align: center; color: rgb(228, 161, 161);"> Authority Information</h1>
+   {%for i in authority%}
+   <div class="card">
+    <img src="/media/{{i.profile_pic}}" alt="Authority" style="width:100%">
+    <h1>{{i.First_Name}} {{i.Last_Name}} </h1>
+    <p class="title">{{i.Mobile}}</p>
+    <p>Dhong University</p>
+     <div style="margin: 24px 0;">
+       <a href="#"><i class="fa fa-dribbble"></i></a> 
+       <a href="#"><i class="fa fa-twitter"></i></a>  
+       <a href="#"><i class="fa fa-linkedin"></i></a>  
+       <a href="#"><i class="fa fa-facebook"></i></a> 
+     </div>
+     <p><button><a href="{% url 'editEmployee' i.id %}" style="color: rgb(53, 49, 49);">Update</a></button></p>
+     <p><button><a href="{% url 'deleteEmployee' i.id %}"  style="color: rgb(39, 38, 38);">Delete</a></button></p>
+   </div>
+   {% endfor %}
+
+   <h1 style="text-align: center; color: rgb(228, 161, 161);">Library Information</h1>
+   {%for i in library %}
+   <div class="card">
+    <img src="/media/{{i.profile_pic}}" alt="library" style="width:100%">
+    <h1>{{i.Book_Name}} {{i.Writer_Name}}  </h1>
+    <p class="title">{{i.Serial_No}}</p>
+    <p>Dhong Library</p>
+     <div style="margin: 24px 0;">
+       <a href="#"><i class="fa fa-dribbble"></i></a> 
+       <a href="#"><i class="fa fa-twitter"></i></a>  
+       <a href="#"><i class="fa fa-linkedin"></i></a>  
+       <a href="#"><i class="fa fa-facebook"></i></a> 
+     </div>
+     <p><button><a href="{% url 'editLibrary' i.id %}" style="color: rgb(53, 49, 49);">Update</a></button></p>
+     <p><button><a href="{% url 'deleteLibrary' i.id %}"  style="color: rgb(53, 49, 49);">Delete</a></button></p>
+   </div>
+   {% endfor %}
+
    {% endblock %}
    {% include "footer.html" %}
 
